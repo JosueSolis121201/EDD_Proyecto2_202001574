@@ -1,0 +1,211 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Proyecto 2</title>
+        <link rel="stylesheet" href="./css/reset.css">
+        <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="./css/vistaAdmin.css">
+        <link rel="stylesheet" href="./css/vistaBlockchain.css">
+        <link rel="stylesheet" href="./css/vistaUsuario.css">
+        <link rel="stylesheet" href="./css/vistaPelicula.css">
+        <link rel="stylesheet" href="./css/vistaActores.css">
+        <link rel="stylesheet" href="./css/vistaCategoria.css">
+    </head>
+<body>
+    <header>
+    </header>
+    <main>
+        <form id="formRegistrar">
+            <div class =contenedorGlobalCentrar>
+                <div class ="contenedorFormInicio">
+                    <label class="labelBase" style="margin-bottom: 100px;">Ingresar</label>
+                    <label class="labelBase">User name</label>
+                    <input type="text" class="inputBase" placeholder="Usuario 123"></input>
+                    <label class="labelBase">Password</label>
+                    <input type="text" class="inputBase" placeholder="***************"></input>
+                    <div class="inputAdmin">
+                        <input type="checkbox" id="checkboxAdmin"> <label class="labelBase">Admin</label>
+                    </div>
+                    <button type="button" class="buttonBase">Iniciar sesion</button>
+                </div>
+            </div>
+        </form>
+        <form id="vistaAdmin">
+            <div class =contenedorGlobalCentrar>
+                <div class="contenedorVistaAdmin">
+                    <div class="contenedorBanner">
+                        <div class="contenedorAjustarBanner1">
+                            <div>
+                                <label class="labelBanner">M</label>
+                            </div>
+                            <label class="labelBanner2" >Movie Cats</label>
+                        </div>
+                        <div>
+                            <button type="button" class="buttonBase">Blockchanin</button>
+                        </div>
+                    </div>
+                    <div class="contenedorBotonesCargaMasiva">
+                        <input type="file" accept="aplications/json" class="inputAdmin" >
+                        <input type="file" accept="aplications/json" class="inputAdmin" >
+                        <input type="file" accept="aplications/json" class="inputAdmin" >
+                        <input type="file" accept="aplications/json" class="inputAdmin" >
+                    </div>
+                    <div class="contenedorManipulacionGrafos">
+                        <div class="contenedorButtonsGraficar">
+                            <button class="buttonBase" >Grafo Pelicula</button>
+                            <button class="buttonBase" >Grafo Clientes</button>
+                            <button class="buttonBase" >Grafo Actores</button>
+                            <button class="buttonBase" >Grafo Categoria</button>
+                        </div>
+                        <div class="contenedorLiezoBase"></div>
+                        <button class="buttonBase" >Descargar Grafo</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        <form id="vistaBlockchain">
+            <div class =contenedorGlobalCentrar>
+                <div class="contenedorVistaBlockchain">
+                    <div class="contenedorBanner">
+                        <div class="contenedorAjustarBanner1">
+                            <div>
+                                <label class="labelBanner">M</label>
+                            </div>
+                            <label class="labelBanner2" >Movie Cats</label>
+                        </div>
+                        <div>
+                            <button type="button" class="buttonBase">Regresar Admin</button>
+                        </div>
+                    </div>
+                    <div class="contenedorHeadContenidoBlockchain">
+                        <input type="text" class="inputBase" placeholder="00.00">
+                        <button class="buttonBase">Modificar Tiempo</button>
+                        <button class="buttonBase" style="margin-left: 640px;">Generar bloque ahora</button>
+                    </div>
+                    <div class="BlockchainData">
+
+                    </div>
+                    <div class="ArbolMerkleAdmin">
+                        
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form id="vistaUsuario">
+            <div class ="contenedorGlobalCentrar">
+                <div class="contenedorVistaUsuario">
+                    <div class="contenedorBanner">
+                        <div class="contenedorAjustarBanner1">
+                            <div>
+                                <label class="labelBanner">M</label>
+                            </div>
+                            <label class="labelBanner2" >Movie Cats</label>
+                        </div>
+                        <div>
+                            <button type="button" class="buttonBase">Bienvenido Usuario</button>
+                        </div>
+                    </div>
+                    <div class="ContenedorVistaUsuarioHeader">
+                        <select class="labelBase" style="height: 50px;" plac>
+                            <option >A-Z</option>
+                          <option>Z-A</option>
+                        </select>
+                        <label class="labelTituloHeader">Moviecats</label>
+                        <button class="buttonBase">Ver Actores</button>
+                        <button class="buttonBase">Ver Categorias</button>
+                    </div>
+                    <div class="ContenedorGenerarVistaPeliculas">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form id="vistaPelicula">
+            <div class ="contenedorGlobalCentrar">
+                <div class="contenedorVistaPelicula">
+                    <div class="contenedorBanner">
+                        <div class="contenedorAjustarBanner1">
+                            <div>
+                                <label class="labelBanner">M</label>
+                            </div>
+                            <label class="labelBanner2" >Movie Cats</label>
+                        </div>
+                        <div>
+                            <button type="button" class="buttonBase">Bienvenido Usuario</button>
+                        </div>
+                    </div>
+                    <div class="contenedorVistaUsuariosPeliculas">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form id="vistaCategoria">
+            <div class ="contenedorGlobalCentrar">
+                <div class="contenedorVistaActores">
+                    <div class="contenedorBanner">
+                        <div class="contenedorAjustarBanner1">
+                            <div>
+                                <label class="labelBanner">M</label>
+                            </div>
+                            <label class="labelBanner2" >Movie Cats</label>
+                        </div>
+                        <div>
+                            <button type="button" class="buttonBase">Bienvenido Usuario</button>
+                        </div>
+                    </div>
+                    <div class="contenedorVistaCategoriaHeader">
+                        <label class="labelTituloHeader">Categorias</label>
+                    </div>
+                    <div class="contenedorVistaCategoriaDatos">
+
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form id="vistaActores">
+            <div class ="contenedorGlobalCentrar">
+                    <div class="contenedorVistaActores">
+                        <div class="contenedorBanner">
+                            <div class="contenedorAjustarBanner1">
+                                <div>
+                                    <label class="labelBanner">M</label>
+                                </div>
+                                <label class="labelBanner2" >Movie Cats</label>
+                            </div>
+                            <div>
+                                <button type="button" class="buttonBase">Bienvenido Usuario</button>
+                            </div>
+                        </div>
+                        <div class="contenedorHeaderActoresVistaUsuario">
+                            
+                            <div class="contenedorCheckBoxActores">
+                                <input type="checkbox">
+                                <input type="checkbox">
+                                <input type="checkbox">
+                            </div>
+                            <div class="contenedorCheckBoxActores">
+                                <label class="labelBase" style="font-size: 12px;">In orden </label>
+                                <label class="labelBase" style="font-size: 12px;">Pre orden</label>
+                                <label class="labelBase" style="font-size: 12px;">Post orden</label>
+                            </div>
+                            <label class="labelTituloHeader" style="margin-left: 80px;">Actores</label>
+
+                        </div>
+                        <div class="contenedorCuerpoActoresVistaUsuario">
+                        </div>
+                </div>
+            </div>
+        </form>
+    </main>
+
+
+<script type="module" src="./vistaRegister.js"></script>
+<script type="module" src="./vistaAdmin.js"></script>
+<script type="module" src="./vistaUsuario.js"></script>
+
+    
+
+
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+.contenedorVistaAdmin{
+    padding: 10px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedorBanner{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: aquamarine;
+    
+}
+.contenedorAjustarBanner1{
+    display: flex;
+    flex-direction: row;
+}
+
+.labelBanner{
+    color: white;
+    font-size: 40px;
+    font-family: Arial;
+    background-color: lightskyblue;
+}
+
+.labelBanner2{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right:800px;
+    color: lightskyblue;
+    font-size: 20px;
+    font-family: Arial;
+}
+
+
+.contenedorBotonesCargaMasiva{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: blueviolet;
+}
+
+.inputAdmin{
+    color: lightskyblue;
+}
+
+.inputAdmin::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.inputAdmin::before {
+    transition: 1s all;
+    content: 'Camibar js';
+    display: inline-block;
+    background: cornflowerblue;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    font-size: 10pt;
+}
+
+.inputAdmin:hover::before {
+    border-color: none;
+    background-color: darkblue;
+}
+
+.inputAdmin:active::before {
+    background: black;
+}
+
+.contenedorManipulacionGrafos{
+    background-color: brown;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+}
+.contenedorButtonsGraficar{
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.contenedorLiezoBase{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 80%;
+    height: 90%;
+    background-color: blanchedalmond;
+}
+
