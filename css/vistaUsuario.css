@@ -25,10 +25,97 @@
     font-family: Arial;
     color: lightskyblue;
     font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .ContenedorGenerarVistaPeliculas{
+    overflow: auto;
     background-color: lawngreen;
-    height: 50%;
+    height: 700px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.contenedorPeliculaIndividualVistaUsuario{
+    width: 98%;
+    height: 200px;
+    background-color: blue;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.contenedorPeliculaIndividualTitulo{
+    background-color:yellow;
+}
+
+.contenedorPeliculaIndividualDescripcion{
+    background-color: blueviolet;
+    height: 100%;
+    width: 700px;
+}
+
+.contenedorPeliculaIndividualInformacion{
+    background-color: wheat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedorPeliculaIndividualAlquilar{
+    background-color: lavenderblush;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedorPeliculaIndividualPrecio{
+    background-color: lightpink;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+
+}
+
+.imgInformacion{
+    height: 150px;
+    width:150px;
+    background-image: url(informacion.png);
+    background-repeat: no-repeat;
+}
+
+.imgAlquilar{
+    height: 150px;
+    width:150px;
+    background-image: url(carrito.png);
+    background-repeat: no-repeat;
 }
  
+
+.divDescripcion{
+    background-color: cadetblue;
+    width: 700px;
+    height: auto;
+    word-wrap: break-word;
+}
+
+.contenedorEstrellas{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.divContenedorPresio{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: lightsteelblue;
+}

@@ -12,5 +12,30 @@
 .contenedorVistaUsuariosPeliculas{
     background-color: lightpink;
     width: 100%;
-    height: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.modPuntuacion{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width:40%;
+}
+
+.imgEstrella{
+    height: 50px;
+    width:50px;
+    background-image: url(estrella.png);
+    background-repeat: no-repeat;
+}
+
+.postComentario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+

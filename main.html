@@ -1,5 +1,6 @@
 <html>
     <head>
+        
         <meta charset="UTF-8">
         <title>Proyecto 2</title>
         <link rel="stylesheet" href="./css/reset.css">
@@ -20,13 +21,13 @@
                 <div class ="contenedorFormInicio">
                     <label class="labelBase" style="margin-bottom: 100px;">Ingresar</label>
                     <label class="labelBase">User name</label>
-                    <input type="text" class="inputBase" placeholder="Usuario 123"></input>
+                    <input type="text" class="inputBase" placeholder="Usuario 123" id="userNameInputLogin"></input>
                     <label class="labelBase">Password</label>
-                    <input type="text" class="inputBase" placeholder="***************"></input>
-                    <div class="inputAdmin">
+                    <input type="text" class="inputBase" placeholder="***************" id="passwordInputLogin"></input>
+                    <div class="contenedorInputAdmin">
                         <input type="checkbox" id="checkboxAdmin"> <label class="labelBase">Admin</label>
                     </div>
-                    <button type="button" class="buttonBase">Iniciar sesion</button>
+                    <button type="button" class="buttonBase" id="buttonFormRegistrar">Iniciar sesion</button>
                 </div>
             </div>
         </form>
@@ -45,20 +46,23 @@
                         </div>
                     </div>
                     <div class="contenedorBotonesCargaMasiva">
-                        <input type="file" accept="aplications/json" class="inputAdmin" >
-                        <input type="file" accept="aplications/json" class="inputAdmin" >
-                        <input type="file" accept="aplications/json" class="inputAdmin" >
-                        <input type="file" accept="aplications/json" class="inputAdmin" >
+                        <input type="file" accept="aplications/json" class="inputAdmin" id="inputAdminCargaMasivaPeliculas">
+                        <input type="file" accept="aplications/json" class="inputAdmin" id="inputAdminCargaMasivaClientes">
+                        <input type="file" accept="aplications/json" class="inputAdmin" id="inputAdminCargaMasivaActores">
+                        <input type="file" accept="aplications/json" class="inputAdmin" id="inputAdminCargaMasivaCategorias">
                     </div>
+
                     <div class="contenedorManipulacionGrafos">
                         <div class="contenedorButtonsGraficar">
-                            <button class="buttonBase" >Grafo Pelicula</button>
-                            <button class="buttonBase" >Grafo Clientes</button>
-                            <button class="buttonBase" >Grafo Actores</button>
-                            <button class="buttonBase" >Grafo Categoria</button>
+                            <button type="button" class="buttonBase" id="buttonGraficarPeliculaAdmin">Grafo Pelicula</button>
+                            <button type="button" class="buttonBase" id="buttonGraficarUsuarioAdmin" >Grafo Clientes</button>
+                            <button type="button"class="buttonBase" id="buttonGraficarActoresAdmin">Grafo Actores</button>
+                            <button type="button" class="buttonBase" >Grafo Categoria</button>
                         </div>
-                        <div class="contenedorLiezoBase"></div>
-                        <button class="buttonBase" >Descargar Grafo</button>
+                        <div class="contenedorLiezoBaseAdmin">
+                            <div id="liezoAdminGrafos"></div>
+                        </div>
+                        <button type="button" class="buttonBase" >Descargar Grafo</button>
                     </div>
 
                 </div>
@@ -80,8 +84,8 @@
                     </div>
                     <div class="contenedorHeadContenidoBlockchain">
                         <input type="text" class="inputBase" placeholder="00.00">
-                        <button class="buttonBase">Modificar Tiempo</button>
-                        <button class="buttonBase" style="margin-left: 640px;">Generar bloque ahora</button>
+                        <button type="button" class="buttonBase">Modificar Tiempo</button>
+                        <button type="button" class="buttonBase" style="margin-left: 640px;">Generar bloque ahora</button>
                     </div>
                     <div class="BlockchainData">
 
@@ -107,15 +111,23 @@
                         </div>
                     </div>
                     <div class="ContenedorVistaUsuarioHeader">
-                        <select class="labelBase" style="height: 50px;" plac>
+                        <select class="labelBase" style="height: 50px;" id="selectVistaUsuarioOrdenamiento">
                             <option >A-Z</option>
                           <option>Z-A</option>
                         </select>
                         <label class="labelTituloHeader">Moviecats</label>
-                        <button class="buttonBase">Ver Actores</button>
-                        <button class="buttonBase">Ver Categorias</button>
+                        <button type="button" class="buttonBase">Ver Actores</button>
+                        <button type="button" class="buttonBase">Ver Categorias</button>
                     </div>
-                    <div class="ContenedorGenerarVistaPeliculas">
+                    <div class="ContenedorGenerarVistaPeliculas" id="ContenedorGenerarVistaPeliculasid">
+                        <div class="contenedorPeliculaIndividualVistaUsuario">
+                            <label class="labeBase">TITULO PELICULA</label>
+                            <div class="contenedorPeliculaIndividualDescripcion">Descripcion largaaaaaaaaaaaaaaaalargaaaaaaaaaaaa</div>
+                            <div class="contenedorPeliculaIndividualInformacion"><label class="labeBase">informacion</label></div>
+                            <div class="contenedorPeliculaIndividualAlquilar"></div>
+                            <div class="contenedorPeliculaIndividualPrecio"></div>
+                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -134,7 +146,7 @@
                             <button type="button" class="buttonBase">Bienvenido Usuario</button>
                         </div>
                     </div>
-                    <div class="contenedorVistaUsuariosPeliculas">
+                    <div class="contenedorVistaUsuariosPeliculas" id="contenedorVistaUsuariosPeliculas">
                     </div>
                 </div>
             </div>
@@ -179,26 +191,29 @@
                         <div class="contenedorHeaderActoresVistaUsuario">
                             
                             <div class="contenedorCheckBoxActores">
-                                <input type="checkbox">
-                                <input type="checkbox">
-                                <input type="checkbox">
+                                <input type="radio" name="InputVistaActores" id="checkBoxIndorden">
+                                <input type="radio" name="InputVistaActores" id="checkBoxPreorden">
+                                <input type="radio" name="InputVistaActores" id="checkBoxPostorden">
                             </div>
                             <div class="contenedorCheckBoxActores">
                                 <label class="labelBase" style="font-size: 12px;">In orden </label>
-                                <label class="labelBase" style="font-size: 12px;">Pre orden</label>
-                                <label class="labelBase" style="font-size: 12px;">Post orden</label>
+                                <label class="labelBase" style="font-size: 12px;" >Pre orden</label>
+                                <label class="labelBase" style="font-size: 12px;" >Post orden</label>
                             </div>
                             <label class="labelTituloHeader" style="margin-left: 80px;">Actores</label>
+                            <button type="button" class="buttonBase" id="buscarOrdenUsuarioSeleccionar" >Buscar orden seleccionado</button>
 
                         </div>
-                        <div class="contenedorCuerpoActoresVistaUsuario">
+                        <div class="contenedorCuerpoActoresVistaUsuario" id="contenedorCuerpoActoresVistaUsuario">
                         </div>
                 </div>
             </div>
         </form>
     </main>
 
-
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>   
+<script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
 <script type="module" src="./vistaRegister.js"></script>
 <script type="module" src="./vistaAdmin.js"></script>
 <script type="module" src="./vistaUsuario.js"></script>

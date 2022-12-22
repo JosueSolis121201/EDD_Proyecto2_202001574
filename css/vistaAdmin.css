@@ -55,7 +55,6 @@
 
 .inputAdmin::before {
     transition: 1s all;
-    content: 'Camibar js';
     display: inline-block;
     background: cornflowerblue;
     border: 1px solid #999;
@@ -78,6 +77,22 @@
     background: black;
 }
 
+#inputAdminCargaMasivaClientes::before {
+    content: 'Cargar Usuarios';
+}
+
+#inputAdminCargaMasivaPeliculas::before {
+    content: 'Cargar Peliculas';
+}
+
+#inputAdminCargaMasivaActores::before {
+    content: 'Cargar Actores';
+}
+
+#inputAdminCargaMasivaCategorias::before {
+    content: 'Cargar Categorias';
+}
+
 .contenedorManipulacionGrafos{
     background-color: brown;
     display: flex;
@@ -92,7 +107,7 @@
     border-radius: 5px;
 }
 
-.contenedorLiezoBase{
+.contenedorLiezoBaseAdmin{
     margin-left: 10px;
     margin-right: 10px;
     width: 80%;
