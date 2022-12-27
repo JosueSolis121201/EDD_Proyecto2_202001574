@@ -16,9 +16,9 @@ class AVL{
         this.raiz = null;
 
         this.id=0;
-        this.nodosCajas;
-        this.conexiones;
-        this.stringFinal;
+        this.nodosCajas="";
+        this.conexiones="";
+        this.stringFinal="";
     }
     //maximo
     MAXIMO(valor1,valor2){
@@ -47,6 +47,7 @@ class AVL{
     //insertar recursivo
     add(valor, nodo,data){
         if(nodo == null) return new Nodo(valor,data,this.id++);
+        
         else{
             if(valor < nodo.valor){
                 nodo.izquierda = this.add(valor, nodo.izquierda,data)
@@ -84,6 +85,7 @@ class AVL{
 
     //rotacion simple izquierda
     rotacionizquierda(nodo){
+        if(nodo!=null){
         var aux = nodo.izquierda;
         nodo.izquierda = aux.derecha;
         aux.derecha = nodo;
@@ -91,6 +93,9 @@ class AVL{
         nodo.altura = this.MAXIMO(this.altura(nodo.derecha),this.altura(nodo.izquierda))+1;
         aux.altura = this.MAXIMO(this.altura(nodo.izquierda), nodo.altura)+1;
         return aux;
+
+        }
+        
     }
     //rotacion simple derecha
     rotacionderecha(nodo){
@@ -105,6 +110,7 @@ class AVL{
     //rotacion dobles derecha
     Rotaciondoblederecha(nodo){
         nodo.derecho = this.rotacionizquierda(nodo.derecho);
+        
         return this.rotacionderecha(nodo);
     }
 
@@ -117,29 +123,28 @@ class AVL{
     //recorridos
     preorden(){
         this.pre_orden(this.raiz);
-        //console.log(this.raiz)
     }
     pre_orden(nodo){
         if(nodo!=null){
-            console.log(nodo);
-            if(nodo.id==0){
-                this.nodosCajas+=  "N" + nodo.id + "[label=\"" + nodo.data.nombre_pelicula + "\" ];\n"
-            }
             //a = nodo.CAJAPROPIA//creo mi propia caja
+            if(nodo==this.raiz){
+                this.nodosCajas+=  "N" + nodo.id + "[label=\"" + nodo.data.nombre_pelicula + nodo.id +"\" ];\n"
+                console.log(nodo)
+            }
             if(nodo.izquierda != null &&nodo.derecha != null){
                 //crear
-                this.nodosCajas+=  "N" + nodo.izquierda.id + "[label=\"" + nodo.izquierda.data.nombre_pelicula  + "\" ];\n"
+                this.nodosCajas+=  "N" + nodo.izquierda.id + "[label=\"" + nodo.izquierda.data.nombre_pelicula +" :" + nodo.izquierda.id +"\" ];\n"
                 this.conexiones += "N" + nodo.id + " -> N" + nodo.izquierda.id  + ";\n"
                 //conectar
-                this.nodosCajas+=  "N" + nodo.derecha.id + "[label=\"" + nodo.derecha.data.nombre_pelicula  + "\" ];\n"
+                this.nodosCajas+=  "N" + nodo.derecha.id + "[label=\"" + nodo.derecha.data.nombre_pelicula +" :" + nodo.derecha.id +"\" ];\n"
                 this.conexiones += "N" + nodo.id  + " -> N" + nodo.derecha.id + ";\n"
             }else{
                 if(nodo.izquierda != null){
-                    this.nodosCajas+=  "N" + nodo.izquierda.id + "[label=\"" + nodo.izquierda.data.nombre_pelicula  + "\" ];\n"
+                    this.nodosCajas+=  "N" + nodo.izquierda.id + "[label=\"" + nodo.izquierda.data.nombre_pelicula +" :" + nodo.izquierda.id +"\" ];\n"
                     this.conexiones += "N" + nodo.id + " -> N" + nodo.izquierda.id  + ";\n"
                 }
                 if(nodo.derecha != null){
-                    this.nodosCajas+=  "N" + nodo.derecha.id + "[label=\"" + nodo.derecha.data.nombre_pelicula  + "\" ];\n"
+                    this.nodosCajas+=  "N" + nodo.derecha.id + "[label=\"" + nodo.derecha.data.nombre_pelicula +" :" + nodo.derecha.id +"\" ];\n"
                     this.conexiones += "N" + nodo.id + " -> N" + nodo.derecha.id + ";\n"
                 }
         }
@@ -147,6 +152,7 @@ class AVL{
             this.pre_orden(nodo.izquierda);
             this.pre_orden(nodo.derecha);
         }
+        //console.log(this.conexiones)
     }
 
     //postorden
@@ -185,6 +191,7 @@ class AVL{
         codigodot += nodos+"\n"
         codigodot += "//agregando conexiones o flechas\n"
         codigodot += "{\n"+conexiones+"\n}\n}"*/
+        console.log(this.nodosCajas)
         //console.log(codigodot)
         d3.select("#liezoAdminGrafos").graphviz() 
             .width(1000)

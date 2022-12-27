@@ -1,8 +1,9 @@
-import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista} from "./variablesGlobales/variablesGlobales.js"
+import { sha256 } from "./sha256.js";
+import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista,categoriasHash} from "./variablesGlobales/variablesGlobales.js"
 
 
 let vistaAdmin = document.getElementById("vistaAdmin")
-vistaAdmin.style.display="none";
+vistaAdmin.style.display="block";
 let blockchain = document.getElementById("vistaBlockchain")
 blockchain.style.display="none";
 
@@ -57,11 +58,11 @@ function leercargaMasivaPeliculas(event){
             peliculasArbolAVL.insertar(pelicula.id_pelicula,pelicula)
 
       }
-      peliculasArbolAVL.preorden()
+     // peliculasArbolAVL.preorden()
 }
 function graficarPeliculaAdmin(){
     peliculasArbolAVL.graficar()
-    peliculasArbolAVL.graficar()
+    //peliculasArbolAVL.graficar()
 }
 document.getElementById('buttonGraficarPeliculaAdmin').addEventListener('click', graficarPeliculaAdmin);
 document.getElementById('inputAdminCargaMasivaPeliculas').addEventListener('change', cargaMasivaPeliculas);
@@ -83,7 +84,7 @@ function leercargaMasivaActores(event){
 
             actoresArbolBinario.agregarr(actores,data.dni);
       }
-      actoresArbolBinario.inorden();
+      //actoresArbolBinario.inorden();
 }
 
 function graficarActoresAdmin(){
@@ -100,6 +101,7 @@ function cargaMasivaCategorias(event) {
     reader.onload = leercargaMasivaCategorias;
     reader.readAsText(event.target.files[0]);
 }
+sha256(10)
 function leercargaMasivaCategorias(event){
     let obj = JSON.parse(event.target.result);
     for (let data of obj) { 
@@ -107,7 +109,7 @@ function leercargaMasivaCategorias(event){
         let categorias={id_categoria:data.id_categoria, 
             company:data.company}
 
-            //usuariosListaSimpleEnlazada.agregar(usuario.nombre_usuario,usuario) ;
+            categoriasHash.insert(categorias);
       }
      // usuariosListaSimpleEnlazada.imprimir();
 }

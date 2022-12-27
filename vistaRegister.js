@@ -1,7 +1,7 @@
 import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista} from "./variablesGlobales/variablesGlobales.js"
 
 let vistaLogin = document.getElementById("formRegistrar")
-vistaLogin.style.display="block";
+vistaLogin.style.display="none";
 
 let checkboxAdmin = document.getElementById("checkboxAdmin")
 

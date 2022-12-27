@@ -29,10 +29,20 @@
 }
 
 .contenedorCuerpoActoresVistaUsuario{
+    overflow: auto;
     background-color: beige;
     width: 100%;
-    height: 90%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 20px;
+    margin-top: 50px;
 }
+
+.contenedorDescripcionActor{
+    display: flex;
+    flex-direction: row;
+    word-wrap: break-word;
+}
+

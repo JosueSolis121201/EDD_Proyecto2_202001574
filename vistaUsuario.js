@@ -1,5 +1,5 @@
 
-import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista} from "./variablesGlobales/variablesGlobales.js"
+import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista, categoriasHash} from "./variablesGlobales/variablesGlobales.js"
 
 import {usuarioActual} from "./vistaRegister.js"
 
@@ -8,7 +8,7 @@ vistaUsuario.style.display="none";
 let vistaPeliculas = document.getElementById("vistaPelicula")
 vistaPeliculas.style.display="none";
 let vistaActores = document.getElementById("vistaActores")
-vistaActores.style.display="block";
+vistaActores.style.display="none";
 let vistaCategorias = document.getElementById("vistaCategoria")
 vistaCategorias.style.display="none";
 
@@ -215,10 +215,13 @@ function publicarComentario(usuario){
     document.getElementById("postComentario").innerHTML = '';
     let nuevoComentario=document.getElementById("getComentario").value
     let lista=[]
-    //TODO COMENTARIO INCOMPLETOS GUARDAR EL NOMBRE DE ACTUAL USUARIO EN EL OBJETO DE LA LISTAS COMO NUEVO ELEMENTO DEL OBJETO NO DE LA LISTA QUE TEXTO TAN LANGO PERO ES PARA QUE NO SE ME PIERDA :D--------------------------------------------------------------------------------------------------------------------
+    let listaNombres=[]
+        //TODO COMENTARIO INCOMPLETOS GUARDAR EL NOMBRE DE ACTUAL USUARIO EN EL OBJETO DE LA LISTAS COMO NUEVO ELEMENTO DEL OBJETO NO DE LA LISTA QUE TEXTO TAN LANGO PERO ES PARA QUE NO SE ME PIERDA :D--------------------------------------------------------------------------------------------------------------------
     let nuevoObjetoComentario ={llave:usuario.data.id_pelicula, 
-        lista:lista}
+        lista:lista,
+        listaNombres:listaNombres}
         //objeto con la llave y los comentarios
+        listaNombres.push(usuarioActual)
         nuevoObjetoComentario.lista.push(nuevoComentario)
     //guardando objeto como tal en lista global
     comentariosLista.push(nuevoObjetoComentario)
@@ -228,13 +231,15 @@ function publicarComentario(usuario){
         //buscando llave
         if(listaGlobalelemnt.llave==usuario.data.id_pelicula){
             //encontrando sus comentarios
+            let buscandoIndiceNombre =0;
             for(let listaComentariosObjeto of listaGlobalelemnt.lista){
                 //creando label como post comentarios
                 let labelComentario= document.createElement("label");
                 labelComentario.classList.add("labelBase")
-                let textoTituloComentario= document.createTextNode(usuarioActual+": "+listaComentariosObjeto);
+                let textoTituloComentario= document.createTextNode(listaGlobalelemnt.listaNombres[buscandoIndiceNombre]+": "+listaComentariosObjeto);
                 labelComentario.appendChild(textoTituloComentario);
                 document.getElementById("postComentario").appendChild(labelComentario);
+                buscandoIndiceNombre++
             }
         }
     }
@@ -245,78 +250,60 @@ function publicarComentario(usuario){
 //! Vista Pelicula------------------------------------------------
 //! Vista Pelicula------------------------------------------------
 
-function recorrerarbolBinario(actual){
-    let contador=0
+function recorrerarbolBinarioPreorden(actual){
+    
     if(actual!=null){ 
         let usuario = actual;
-        console.log(usuario.data)
-        contador++
-        //generando divs
-        //!div Contenedor de TODO PARA CADA PELICULA
-        let nuevoDiv = document.createElement("div");
-        nuevoDiv.classList.add("contenedorPeliculaIndividualVistaUsuario")
-        nuevoDiv.setAttribute("id","contenedorPeliculaIndividualVistaUsuario"+contador);
-        document.getElementById("ContenedorGenerarVistaPeliculasid").appendChild(nuevoDiv);
-        //! LABELS- TITULO PELICULA------------------------------------------------
-       let labelTituloPelicula = document.createElement("label");
-       labelTituloPelicula.classList.add("labelBase")
-       nuevoDiv.appendChild(labelTituloPelicula);
-       let textoTituloPelicula = document.createTextNode(usuario.data.nombre_pelicula);
-       labelTituloPelicula.appendChild(textoTituloPelicula);
-       //! Conteneodr PARA DESCRIPCION------------------------------------------------
-       let divDescripcion = document.createElement("div");
-       divDescripcion.classList.add("divDescripcion")
-       nuevoDiv.appendChild(divDescripcion);
-       let textoDescripcion = document.createTextNode(usuario.data.descripcion);
-       divDescripcion.appendChild(textoDescripcion);
-        //! Contenedor INFORMACION------------------------------------------------
-        let divInformacion = document.createElement("div");
-        divInformacion.classList.add("contenedorPeliculaIndividualInformacion")
-        
-       nuevoDiv.appendChild(divInformacion);
-       //insertando igmaen
-       let imagenInformaciondiv = document.createElement("div");
-       imagenInformaciondiv.classList.add("imgInformacion")
-       divInformacion.appendChild(imagenInformaciondiv);
-       imagenInformaciondiv.addEventListener("click",(e)=>{
-        InformacionPelicula(usuario);
-    })
-       let textoInformacion = document.createTextNode("Informacion");
-       divInformacion.appendChild(textoInformacion);
-       //! Contenedor Alquilar------------------------------------------------
-       let divAlquilar = document.createElement("div");
-       divAlquilar.classList.add("contenedorPeliculaIndividualAlquilar")
-       nuevoDiv.appendChild(divAlquilar);
-       //insertando igmaen
-       let imagenAlquilardiv = document.createElement("div");
-       imagenAlquilardiv.classList.add("imgAlquilar")
-       divAlquilar.appendChild(imagenAlquilardiv);
-       let textoAlquilar = document.createTextNode("Alquilar");
-       divAlquilar.appendChild(textoAlquilar);
-        //! Contenedor PRECIO------------------------------------------------
-        let labelPrecio= document.createElement("label");
-        labelPrecio.classList.add("labelBase")
-       nuevoDiv.appendChild(labelPrecio);
-       let textoPrecio = document.createTextNode(usuario.data.precio_Q);
-       labelPrecio.appendChild(textoPrecio);
+        let textoDescripcionActor = document.createTextNode("Artista: "+usuario.valor.nombre_actor+"\n Descripcion: "+usuario.valor.descripcion+ "\n\n" );
+        document.getElementById("w3review").appendChild(textoDescripcionActor);
+        recorrerarbolBinarioPreorden(actual.izquierda);
+        recorrerarbolBinarioPreorden(actual.derecha);
 
-       recorrerarbolBinario(actual.izquierda);
-       recorrerarbolBinario(actual.derecha);
+        console.log(actual.id)
+    }
+}
+
+
+function recorrerarbolBinarioInorden(actual){
+    
+    if(actual!=null){ 
+        recorrerarbolBinarioInorden(actual.izquierda);
+        let usuario = actual;
+        let textoDescripcionActor = document.createTextNode("Artista: "+usuario.valor.nombre_actor+"\n Descripcion: "+usuario.valor.descripcion+ "\n\n" );
+        document.getElementById("w3review").appendChild(textoDescripcionActor);
+        recorrerarbolBinarioInorden(actual.derecha);
+
+        console.log(actual.id)
+    }
+}
+
+
+function recorrerarbolBinarioPostorden(actual){
+    
+    if(actual!=null){ 
+        recorrerarbolBinarioPostorden(actual.izquierda);
+        recorrerarbolBinarioPostorden(actual.derecha);
+        let usuario = actual;
+        let textoDescripcionActor = document.createTextNode("Artista: "+usuario.valor.nombre_actor+"\n Descripcion: "+usuario.valor.descripcion+ "\n\n" );
+        document.getElementById("w3review").appendChild(textoDescripcionActor);
+
+        console.log(actual.id)
     }
 }
 function buscarActores(){
-    document.getElementById("contenedorCuerpoActoresVistaUsuario").innerHTML = '';
-    console.log(actoresArbolBinario)
+    document.getElementById("w3review").innerHTML = '';
     let actual = actoresArbolBinario.raiz; 
-    //recorrerarbolBinario(actual);
     if(checkboxAdminInorden.checked){
-        console.log("inorden")
+        console.log("In orden ID")
+        recorrerarbolBinarioInorden(actual)
     }
     if(checkboxAdminPreorden.checked){
-        console.log("Preorden")
+        console.log("Pre orden ID")
+        recorrerarbolBinarioPreorden(actual)
     }
     if(checkboxAdminPostorden.checked){
-        console.log("Postorden")
+        console.log("Post Orden ID")
+        recorrerarbolBinarioPostorden(actual)
     }
 }
 
@@ -330,3 +317,36 @@ document.getElementById("buscarOrdenUsuarioSeleccionar").addEventListener("click
 //! Vista Actores------------------------------------------------
 //! Vista Actores------------------------------------------------
 //! Vista Actores------------------------------------------------
+// insertar desde admin
+//recorrer aqui
+//colocarlo visual html
+
+
+function verCategorias(){
+    document.getElementById("contenedorVistaCategoriaDatos").innerHTML = '';
+    let contador=0;
+    for(let listaofLista of categoriasHash.table){
+        let temp = listaofLista.head
+        if(temp!=null){
+        //dato = temp.value.company
+        //console.log(temp.value.company)
+        //!div Contenedor de TODO PARA CADA categoria
+        let nuevoDiv = document.createElement("div");
+        nuevoDiv.classList.add("contenedorCategoriaIndividualVistaUsuario")
+        nuevoDiv.setAttribute("id","contenedorCategoriaIndividualVistaUsuario"+contador);
+        document.getElementById("contenedorVistaCategoriaDatos").appendChild(nuevoDiv);
+        //!comentario
+        let labelTituloCategoria= document.createElement("label");
+        labelTituloCategoria.classList.add("labelBase")
+        let textoTituloCategoria= document.createTextNode(temp.value.company);
+        labelTituloCategoria.appendChild(textoTituloCategoria);
+        nuevoDiv.appendChild(labelTituloCategoria);
+        }
+    }
+} 
+
+document.getElementById("actualizarCategoriasVistaCategoria").addEventListener("click",verCategorias)
+
+//! Vista Categoria------------------------------------------------
+//! Vista Categoria------------------------------------------------
+//! Vista Categoria------------------------------------------------
