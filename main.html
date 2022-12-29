@@ -57,12 +57,13 @@
                             <button type="button" class="buttonBase" id="buttonGraficarPeliculaAdmin">Grafo Pelicula</button>
                             <button type="button" class="buttonBase" id="buttonGraficarUsuarioAdmin" >Grafo Clientes</button>
                             <button type="button"class="buttonBase" id="buttonGraficarActoresAdmin">Grafo Actores</button>
-                            <button type="button" class="buttonBase" >Grafo Categoria</button>
+                            <button type="button" class="buttonBase" id="buttonGraficarCategoriasAdmin" >Grafo Categoria</button>
                         </div>
                         <div class="contenedorLiezoBaseAdmin">
                             <div id="liezoAdminGrafos"></div>
+                            <div id="trash"></div>
                         </div>
-                        <button type="button" class="buttonBase" >Descargar Grafo</button>
+                        <button type="button" class="buttonBase" id="bttnDescargaAdmin">Descargar Grafo</button>
                     </div>
 
                 </div>
@@ -83,14 +84,16 @@
                         </div>
                     </div>
                     <div class="contenedorHeadContenidoBlockchain">
-                        <input type="text" class="inputBase" placeholder="00.00">
-                        <button type="button" class="buttonBase">Modificar Tiempo</button>
-                        <button type="button" class="buttonBase" style="margin-left: 640px;">Generar bloque ahora</button>
+                        <input type="text" class="inputBase" placeholder="00.00" id="inputTimepoBlockchain">
+                        <button type="button" class="buttonBase" id="bttnModificarTiempoBlockchain">Modificar Tiempo</button>
+                        <button type="button" class="buttonBase" style="margin-left: 640px;" id="generarBloqueBlockchain">Generar bloque ahora</button>
                     </div>
-                    <div class="BlockchainData">
+                    <div class="BlockchainData" id="BlockchainData">
+                        <div id="Blockchain"></div>
 
                     </div>
-                    <div class="ArbolMerkleAdmin">
+                    <div class="ArbolMerkleAdmin" id="ArbolMerkleAdmin">
+                        <button type="button" class="buttonBase" id="graficarArbolMerkle">Graficar arbol merkle</button>
                         
                     </div>
                 </div>
@@ -212,14 +215,23 @@
             </div>
         </form>
     </main>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>   
 <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+
 <script type="module" src="./vistaRegister.js"></script>
 <script type="module" src="./vistaAdmin.js"></script>
 <script type="module" src="./vistaUsuario.js"></script>
+<script type="module" src="./html2canvas.js"></script>
+
 <script type="module" src="./sha256.js"></script>
+<script type="module" src="./estructuras/arbolMerkle.js"></script>
+<script type="module" src="./estructuras/blockchain.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
 
     
 

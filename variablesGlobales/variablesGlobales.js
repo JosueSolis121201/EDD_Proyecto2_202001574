@@ -2,11 +2,15 @@ import ListaSimpleEnlazada from "../estructuras/listaSimpleEnlazada.js";
 import ABB from "../estructuras/arbolBinario.js";
 import AVL from "../estructuras/arbolAVL.js";
 import TableHash from "../estructuras/tableHash.js";
+import Merckle from "../estructuras/arbolMerkle.js";
+import BlockChain from "../estructuras/blockchain.js";
 
 var usuariosListaSimpleEnlazada = new ListaSimpleEnlazada();
 var actoresArbolBinario = new ABB();
 var peliculasArbolAVL = new AVL();
 var categoriasHash = new TableHash(20);
+var alquilerMerkle = new Merckle();
+var blockChain = new BlockChain();
 //variables globales 
 var comentariosLista =[];
 
@@ -33,7 +37,7 @@ let usuario={dpi:2354168452525,
 //! INGRESADOS USUARIO DE PRUEBA
 
 
-       /* let pelicula1={id_pelicula:2, 
+        let pelicula1={id_pelicula:2, 
         nombre_pelicula:"pelicula0", 
         descripcion:"asdasdasdasdasdasdsalñjalskjclksajcklasjcklsaasdasdasdasdasdasdsalñjalskjclksajcklasjcklsa",
         puntuacion_star:1,
@@ -71,7 +75,7 @@ let usuario={dpi:2354168452525,
                         paginas:150,
                         categoria:"asdas"}
             
-                        peliculasArbolAVL.insertar(pelicula3.id_pelicula,pelicula3)*/
+                        peliculasArbolAVL.insertar(pelicula3.id_pelicula,pelicula3)
 //! INGRESADOS PEILICULAS DE PRUEBA
 
 
@@ -108,5 +112,7 @@ export {
     actoresArbolBinario,
     peliculasArbolAVL,
     comentariosLista,
-    categoriasHash
+    categoriasHash,
+    alquilerMerkle,
+    blockChain
 }

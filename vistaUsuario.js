@@ -1,12 +1,12 @@
 
-import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista, categoriasHash} from "./variablesGlobales/variablesGlobales.js"
+import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista, categoriasHash,alquilerMerkle} from "./variablesGlobales/variablesGlobales.js"
 
 import {usuarioActual} from "./vistaRegister.js"
 
 let vistaUsuario = document.getElementById("vistaUsuario")
-vistaUsuario.style.display="none";
+vistaUsuario.style.display="block";
 let vistaPeliculas = document.getElementById("vistaPelicula")
-vistaPeliculas.style.display="none";
+vistaPeliculas.style.display="block";
 let vistaActores = document.getElementById("vistaActores")
 vistaActores.style.display="none";
 let vistaCategorias = document.getElementById("vistaCategoria")
@@ -27,7 +27,7 @@ function recorrerarbolAVL(actual){
     let contador=0
     if(actual!=null){ 
         let usuario = actual;
-        console.log(usuario.data)
+        //console.log(usuario.data)
         contador++
         //generando divs
         //!div Contenedor de TODO PARA CADA PELICULA
@@ -71,6 +71,15 @@ function recorrerarbolAVL(actual){
        divAlquilar.appendChild(imagenAlquilardiv);
        let textoAlquilar = document.createTextNode("Alquilar");
        divAlquilar.appendChild(textoAlquilar);
+       //! Accion ed alquilar++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       imagenAlquilardiv.addEventListener("click",(e)=>{
+        let objetoMerkle={usuario:usuarioActual,
+            pelicula:usuario.data.nombre_pelicula,
+            precio:usuario.data.precio_Q
+        }
+        alquilerMerkle.add(objetoMerkle)
+        console.log(alquilerMerkle)
+    })
         //! Contenedor PRECIO------------------------------------------------
         let labelPrecio= document.createElement("label");
         labelPrecio.classList.add("labelBase")

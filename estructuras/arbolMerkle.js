@@ -20,6 +20,18 @@ class Merkle {
     this.tophash = null
     this.datablock = []    
     this.dot = ''
+
+    this.llenarvacio=10;
+
+    this.id=0;
+        this.nodosCajas="";
+        this.conexiones="";
+        this.stringFinal="";
+  }
+
+  clear(){
+    this.tophash = null
+    this.datablock = []  
   }
 
   add(value) {
@@ -47,24 +59,32 @@ class Merkle {
       
       if (tmp.left == null && tmp.right == null) {
         tmp.left = this.datablock[n-index--]
+        
         //tmp.hash = (tmp.left.value*1000).toString(16)
         //!
-        tmp.hash = sha256(tmp.left.value)
+        if(tmp.left==1){
+          this.llenarvacio++;
+          tmp.hash= CryptoJS.SHA256(this.llenarvacio.toString()).toString();
+          //console.log(tmp.hash)
+          //console.log(this.llenarvacio)
+        }else{
+          console.log(tmp.left.value)
+          tmp.hash= CryptoJS.SHA256(tmp.left.value.usuario+"-"+tmp.left.value.pelicula).toString();
+        }
+        
+        //console.log(tmp.hash)
+        //tmp.hash = sha256(tmp.left.value)
       } else {
         //tmp.hash = (parseInt(tmp.left.hash, 16)+parseInt(tmp.right.hash, 16)).toString(16)
-        tmp.hash = sha256(tmp.left.value+tmp.right.value)
-        //!sacarlo?!?!
+        tmp.hash = CryptoJS.SHA256(tmp.left.hash+tmp.right.hash).toString();
+        //console.log(tmp.hash)
       }      
     }
   }
 
   preorder(tmp) {
     if (tmp != null) {
-      if (tmp instanceof DataNode) {
-        document.getElementById("log").innerHTML+='DB:'+tmp.value+' '
-      } else {
-        document.getElementById("log").innerHTML+=tmp.hash+' '
-      }
+      //console.log(tmp)
       this.preorder(tmp.left)
       this.preorder(tmp.right)
     }
@@ -82,7 +102,7 @@ class Merkle {
     index = Math.pow(2, exp)
     this.createTree(exp)
     this.genHash(this.tophash, Math.pow(2, exp))
-    this.preorder(this.tophash)    
+    //this.preorder(this.tophash)    
   }
 
   show() {
@@ -90,34 +110,52 @@ class Merkle {
   }
 
   dotgen(tmp) {
+    
     if (tmp != null) {
+      //console.log(tmp)
       if (tmp.left != null){
         if (tmp.left instanceof DataNode) {
-          this.dot += '"'+tmp.left.value+'" [color=gray] -> "0x'+tmp.hash+'";'
+          //console.log(tmp)
+          this.nodosCajas+=  "N" +tmp.hash + "[label=\"" + tmp.hash +"\" ];\n"
         }
       }
       if (tmp.left instanceof HashNode) {
-        if (tmp.left != null) this.dot += '"0x'+tmp.left.hash+'" -> "0x'+tmp.hash+'";'
-        if (tmp.right != null) this.dot += '"0x'+tmp.right.hash+'" -> "0x'+tmp.hash+'";'
+        if (tmp.left != null) this.conexiones += "N" + tmp.left.hash + " -> N" + tmp.hash  + ";\n"
+        if (tmp.right != null) this.conexiones += "N" + tmp.right.hash + " -> N" + tmp.hash + ";\n"
       }
+  
       this.dotgen(tmp.left)
       this.dotgen(tmp.right)
     }
-  }
 }
+
+
+    graficar(){
+      this.datablock.forEach(element =>console.log(element));
+      this.dotgen(this.tophash)
+  
+
+  
+      let codigodot = "digraph G{\nlabel=\" Arbol Merkle\";\nnode [shape=box];\n graph [rankdir = BT];\n "; 
+      this.stringFinal += this.nodosCajas +this.conexiones
+      codigodot+= "{\n"+this.stringFinal+"\n}\n}"
+
+      d3.select("#ArbolMerkleAdmin").graphviz() 
+      .width(1000)
+      .height(540)
+      .renderDot(codigodot) 
+      this.nodosCajas="";
+        this.conexiones="";
+        this.stringFinal="";
+}
+}
+
 
 var index = 0
 
-function merkle() {
-    var m = new Merkle()
-    m.add(4)
-    m.add(5)
-    m.add(6)
-    m.add(7)
-    m.add(8)
-    m.auth()
-    m.dot = '{node [shape=box];'
-    m.dotgen(m.tophash)
-    m.dot += '}'
-    return m.dot
-}
+
+
+
+
+
+export default Merkle;

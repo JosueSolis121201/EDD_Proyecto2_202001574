@@ -1,11 +1,10 @@
+import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista,categoriasHash,alquilerMerkle,blockChain} from "./variablesGlobales/variablesGlobales.js"
 import { sha256 } from "./sha256.js";
-import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista,categoriasHash} from "./variablesGlobales/variablesGlobales.js"
-
 
 let vistaAdmin = document.getElementById("vistaAdmin")
-vistaAdmin.style.display="block";
+vistaAdmin.style.display="none";
 let blockchain = document.getElementById("vistaBlockchain")
-blockchain.style.display="none";
+blockchain.style.display="block";
 
 
 
@@ -101,7 +100,7 @@ function cargaMasivaCategorias(event) {
     reader.onload = leercargaMasivaCategorias;
     reader.readAsText(event.target.files[0]);
 }
-sha256(10)
+
 function leercargaMasivaCategorias(event){
     let obj = JSON.parse(event.target.result);
     for (let data of obj) { 
@@ -114,8 +113,50 @@ function leercargaMasivaCategorias(event){
      // usuariosListaSimpleEnlazada.imprimir();
 }
 document.getElementById('inputAdminCargaMasivaCategorias').addEventListener('change', cargaMasivaCategorias);
+
+function graficarCategoriasAdmin(){
+    categoriasHash.graficar()
+}
+
+document.getElementById('buttonGraficarCategoriasAdmin').addEventListener('click', graficarCategoriasAdmin);
 ////! Categorias-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ////! Categorias-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ////! Categorias-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+let marc = document.getElementById("trash")
+marc.style.display="none";  
 
+document.getElementById("bttnDescargaAdmin").addEventListener("click", function() {
+	html2canvas(document.getElementById("liezoAdminGrafos")).then(function (canvas) {			var anchorTag = document.createElement("a");
+			document.body.appendChild(anchorTag);
+			document.getElementById("trash").appendChild(canvas);
+			anchorTag.download = "filename.jpg";
+			anchorTag.href = canvas.toDataURL();
+			anchorTag.target = '_blank';
+			anchorTag.click();
+		});
+ });
+
+
+
+ ////! button descargar graficar-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+////!button descargar graficar-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+////!button descargar graficar---
+
+function graficarmerkle(){
+    alquilerMerkle.auth()
+    alquilerMerkle.graficar()
+    console.log(alquilerMerkle)
+    //alquilerMerkle.clear()
+
+}
+document.getElementById('graficarArbolMerkle').addEventListener('click', graficarmerkle);
+
+ ////! Arbol Merckle-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+////! Arbol Merckle-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+////! Arbol Merckle-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ ////! Block chain-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+////! Block chain-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+////! Block chain--------

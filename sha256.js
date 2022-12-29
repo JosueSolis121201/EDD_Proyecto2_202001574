@@ -7,7 +7,7 @@
  * @license MIT
  */
 /*jslint bitwise: true */
-(function () {
+function sha256() {
     'use strict';
   
     var ERROR = 'input is invalid type';
@@ -497,22 +497,9 @@
         Sha256.prototype.finalize.call(this);
       }
     };
-  
-    var exports = createMethod();
-    exports.sha256 = exports;
-    exports.sha224 = createMethod(true);
-    exports.sha256.hmac = createHmacMethod();
-    exports.sha224.hmac = createHmacMethod(true);
-  
-    if (COMMON_JS) {
-      module.exports = exports;
-    } else {
-      root.sha256 = exports.sha256;
-      root.sha224 = exports.sha224;
-      if (AMD) {
-        define(function () {
-          return exports;
-        });
-      }
-    }
-  })();
+  }
+
+
+  export {
+    sha256
+  }
