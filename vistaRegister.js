@@ -2,8 +2,16 @@ import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,coment
 
 let vistaLogin = document.getElementById("formRegistrar")
 vistaLogin.style.display="block";
+let vistaAdmin = document.getElementById("vistaAdmin")
+let vistaUsuario = document.getElementById("vistaUsuario")
+
 
 let checkboxAdmin = document.getElementById("checkboxAdmin")
+
+
+
+
+
 
 
 let usuarioActual;
@@ -18,22 +26,18 @@ function loginBotonFormulario(){
                 console.log("Comprobando si es admin")
                 if(buscando.admin==true){
                     usuarioActual=username
-                    alert("Bienvenido admin: "+username)
+                    alert("Bienvenido admin: "+username) 
                     console.log("es admin")
-                    /*registrar.style.display ="none";
-                    login.style.display ="none"; 
-                    vistaAdmin.style.display ="block";*/
+                    vistaLogin.style.display="none";
+                    vistaAdmin.style.display="block";
                 }else{
                     alert("No eres admin")
                 }
             }else{
                 usuarioActual=username
                 alert("Bienvenido: "+username)
-               /* registrar.style.display ="none";
-                login.style.display ="none"; 
-                vistaUsuario.style.display ="block";
-                vistaAmigosButton .style.display ="block";
-                console.log("Entrando como usuario")*/
+                vistaLogin.style.display="none";
+                vistaUsuario.style.display="block";
             }
         }else{
             alert("Nombre de usuario encontrado contraseña INCORRECTA")

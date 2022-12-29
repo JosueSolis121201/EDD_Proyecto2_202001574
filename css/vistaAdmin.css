@@ -13,7 +13,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: aquamarine;
     
 }
 .contenedorAjustarBanner1{
@@ -42,7 +41,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: blueviolet;
 }
 
 .inputAdmin{
@@ -94,7 +92,6 @@
 }
 
 .contenedorManipulacionGrafos{
-    background-color: brown;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -112,6 +109,10 @@
     margin-right: 10px;
     width: 80%;
     height: 90%;
-    background-color: blanchedalmond;
+
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: black;
 }
 

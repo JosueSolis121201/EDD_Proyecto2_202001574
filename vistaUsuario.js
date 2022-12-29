@@ -3,29 +3,129 @@ import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,coment
 
 import {usuarioActual} from "./vistaRegister.js"
 
-let vistaUsuario = document.getElementById("vistaUsuario")
-vistaUsuario.style.display="block";
-let vistaPeliculas = document.getElementById("vistaPelicula")
-vistaPeliculas.style.display="block";
-let vistaActores = document.getElementById("vistaActores")
+let vistaUsuario = document.getElementById("vistaUsuario");
+vistaUsuario.style.display="none";
+let vistaPeliculas = document.getElementById("vistaPelicula");
+vistaPeliculas.style.display="none";
+let vistaActores = document.getElementById("vistaActores");
 vistaActores.style.display="none";
-let vistaCategorias = document.getElementById("vistaCategoria")
+let vistaCategorias = document.getElementById("vistaCategoria");
 vistaCategorias.style.display="none";
+
+let vistaRegister= document.getElementById("formRegistrar") ;
+
 
 
 function selectText() {
     const input = document.getElementById('selectVistaUsuarioOrdenamiento');
     input.focus();
     if(input.value=="A-Z"){
-        buscarPeliculas();
+        buscarPeliculasAZ();
     }else{
-        buscarPeliculas();
+        buscarPeliculasZA();
     }
 }
+function cambio2(){
+    vistaUsuario.style.display="none";
+    vistaCategorias.style.display="block";
+
+}
+function cambio3(){
+    vistaUsuario.style.display="none";
+    vistaRegister.style.display="block";
+}
+
+
+
+document.getElementById('btnnheaderlogout').addEventListener('click', cambio3);
+document.getElementById('bttnCategoriaUsuario').addEventListener('click', cambio2);
 document.getElementById('selectVistaUsuarioOrdenamiento').addEventListener('change', selectText);
 function recorrerarbolAVL(actual){
     let contador=0
     if(actual!=null){ 
+        recorrerarbolAVL(actual.izquierda);
+        let usuario = actual;
+        console.log(usuario)
+        //console.log(usuario.data)
+        contador++
+        //generando divs
+        //!div Contenedor de TODO PARA CADA PELICULA
+        let nuevoDiv = document.createElement("div");
+        nuevoDiv.classList.add("contenedorPeliculaIndividualVistaUsuario")
+        nuevoDiv.setAttribute("id","contenedorPeliculaIndividualVistaUsuario"+contador);
+        document.getElementById("ContenedorGenerarVistaPeliculasid").appendChild(nuevoDiv);
+        //! LABELS- TITULO PELICULA------------------------------------------------
+       let labelTituloPelicula = document.createElement("label");
+       labelTituloPelicula.classList.add("labelBase")
+       nuevoDiv.appendChild(labelTituloPelicula);
+       let textoTituloPelicula = document.createTextNode(usuario.data.nombre_pelicula);
+       labelTituloPelicula.appendChild(textoTituloPelicula);
+       //! Conteneodr PARA DESCRIPCION------------------------------------------------
+       let divDescripcion = document.createElement("div");
+       divDescripcion.classList.add("divDescripcion")
+       nuevoDiv.appendChild(divDescripcion);
+       let textoDescripcion = document.createTextNode(usuario.data.descripcion);
+       divDescripcion.appendChild(textoDescripcion);
+        //! Contenedor INFORMACION------------------------------------------------
+        let divInformacion = document.createElement("div");
+        divInformacion.classList.add("contenedorPeliculaIndividualInformacion")
+        
+       nuevoDiv.appendChild(divInformacion);
+       //insertando igmaen
+       let imagenInformaciondiv = document.createElement("div");
+       imagenInformaciondiv.classList.add("imgInformacion")
+       divInformacion.appendChild(imagenInformaciondiv);
+       imagenInformaciondiv.addEventListener("click",(e)=>{
+        InformacionPelicula(usuario);
+        vistaPeliculas.style.display="block";
+        vistaUsuario.style.display="none";
+        
+    })
+       let textoInformacion = document.createTextNode("Informacion");
+       divInformacion.appendChild(textoInformacion);
+       //! Contenedor Alquilar------------------------------------------------
+       let divAlquilar = document.createElement("div");
+       divAlquilar.classList.add("contenedorPeliculaIndividualAlquilar")
+       nuevoDiv.appendChild(divAlquilar);
+       //insertando igmaen
+       let imagenAlquilardiv = document.createElement("div");
+       imagenAlquilardiv.classList.add("imgAlquilar")
+       divAlquilar.appendChild(imagenAlquilardiv);
+       let textoAlquilar = document.createTextNode("Alquilar");
+       divAlquilar.appendChild(textoAlquilar);
+       //! Accion ed alquilar++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       imagenAlquilardiv.addEventListener("click",(e)=>{
+        let objetoMerkle={usuario:usuarioActual,
+            pelicula:usuario.data.nombre_pelicula,
+            precio:usuario.data.precio_Q
+        }
+        alquilerMerkle.add(objetoMerkle)
+        console.log(alquilerMerkle)
+    })
+        //! Contenedor PRECIO------------------------------------------------
+        let labelPrecio= document.createElement("label");
+        labelPrecio.classList.add("labelBase")
+       nuevoDiv.appendChild(labelPrecio);
+       
+       let textoPrecio = document.createTextNode(usuario.data.precio_Q);
+       labelPrecio.appendChild(textoPrecio);
+
+        
+        recorrerarbolAVL(actual.derecha);
+    }
+}
+function buscarPeliculasAZ(){
+    document.getElementById("ContenedorGenerarVistaPeliculasid").innerHTML = '';
+    console.log(peliculasArbolAVL)
+    let actual = peliculasArbolAVL.raiz; 
+    recorrerarbolAVL(actual);
+} 
+
+function recorrerarbolAVLZA(actual){
+    let contador=0
+    if(actual!=null){ 
+        recorrerarbolAVLZA(actual.derecha);
+        
         let usuario = actual;
         //console.log(usuario.data)
         contador++
@@ -58,6 +158,8 @@ function recorrerarbolAVL(actual){
        divInformacion.appendChild(imagenInformaciondiv);
        imagenInformaciondiv.addEventListener("click",(e)=>{
         InformacionPelicula(usuario);
+        vistaPeliculas.style.display="block";
+        vistaUsuario.style.display="none";
     })
        let textoInformacion = document.createTextNode("Informacion");
        divInformacion.appendChild(textoInformacion);
@@ -84,19 +186,29 @@ function recorrerarbolAVL(actual){
         let labelPrecio= document.createElement("label");
         labelPrecio.classList.add("labelBase")
        nuevoDiv.appendChild(labelPrecio);
-       let textoPrecio = document.createTextNode(usuario.data.precio_Q);
+       let textoPrecio = document.createTextNode(usuario.data.precion_Q);
        labelPrecio.appendChild(textoPrecio);
 
-        recorrerarbolAVL(actual.izquierda);
-        recorrerarbolAVL(actual.derecha);
+       recorrerarbolAVLZA(actual.izquierda);
+        
     }
 }
-function buscarPeliculas(){
+function buscarPeliculasZA(){
     document.getElementById("ContenedorGenerarVistaPeliculasid").innerHTML = '';
     console.log(peliculasArbolAVL)
     let actual = peliculasArbolAVL.raiz; 
-    recorrerarbolAVL(actual);
+    recorrerarbolAVLZA(actual);
 } 
+
+function CambiodeVista1(){
+    
+vistaUsuario.style.display="none";
+vistaActores.style.display="block";
+
+}
+
+document.getElementById('btnnVerActoresUsuario').addEventListener('click', CambiodeVista1);
+
 //! Vista Usuario------------------------------------------------
 //! Vista Usuario------------------------------------------------
 //! Vista Usuario------------------------------------------------
@@ -159,13 +271,21 @@ function InformacionPelicula(usuario){
        //insertando igmaen
        let imagenAlquilardiv = document.createElement("div");
        imagenAlquilardiv.classList.add("imgAlquilar")
+       imagenAlquilardiv.addEventListener("click",(e)=>{
+        let objetoMerkle={usuario:usuarioActual,
+            pelicula:usuario.data.nombre_pelicula,
+            precio:usuario.data.precio_Q
+        }
+        alquilerMerkle.add(objetoMerkle)
+        console.log(alquilerMerkle)
+    })
        divAlquilar.appendChild(imagenAlquilardiv);
        let textoAlquilar = document.createTextNode("Alquilar");
        divAlquilar.appendChild(textoAlquilar);
     //precio
     let labelPrecio= document.createElement("label");
     labelPrecio.classList.add("labelBase")
-    let textoPreciolabel = document.createTextNode("Precio: "+usuario.data.precio_Q+"Q");
+    let textoPreciolabel = document.createTextNode("Precio: "+usuario.data.precion_Q+"Q");
     labelPrecio.appendChild(textoPreciolabel);
     divContenedorAlquilar.appendChild(labelPrecio);
     //!Comentarios
@@ -254,6 +374,11 @@ function publicarComentario(usuario){
     }
 }
 
+function cambio4(){
+    vistaUsuario.style.display="block";
+    vistaPeliculas.style.display="none";
+}
+document.getElementById('bttnHomePelicula').addEventListener('click', cambio4);
 
 //! Vista Pelicula------------------------------------------------
 //! Vista Pelicula------------------------------------------------
@@ -321,7 +446,11 @@ let checkboxAdminPreorden = document.getElementById("checkBoxPreorden")
 let checkboxAdminPostorden = document.getElementById("checkBoxPostorden")
 document.getElementById("buscarOrdenUsuarioSeleccionar").addEventListener("click",buscarActores)
 
-
+function cambio5(){
+    vistaUsuario.style.display="block";
+    vistaActores.style.display="none";
+}
+document.getElementById('bttnHomeActores').addEventListener('click', cambio5);
 
 //! Vista Actores------------------------------------------------
 //! Vista Actores------------------------------------------------
@@ -336,8 +465,9 @@ function verCategorias(){
     let contador=0;
     for(let listaofLista of categoriasHash.table){
         let temp = listaofLista.head
-        if(temp!=null){
-        //dato = temp.value.company
+        
+            while(temp!=null){
+                //dato = temp.value.company
         //console.log(temp.value.company)
         //!div Contenedor de TODO PARA CADA categoria
         let nuevoDiv = document.createElement("div");
@@ -350,11 +480,20 @@ function verCategorias(){
         let textoTituloCategoria= document.createTextNode(temp.value.company);
         labelTituloCategoria.appendChild(textoTituloCategoria);
         nuevoDiv.appendChild(labelTituloCategoria);
+        temp = temp.next
         }
+            
+        
     }
 } 
 
 document.getElementById("actualizarCategoriasVistaCategoria").addEventListener("click",verCategorias)
+
+function cambio6(){
+    vistaUsuario.style.display="block";
+    vistaCategorias.style.display="none";
+}
+document.getElementById('bttnHomeCategoria').addEventListener('click', cambio6);
 
 //! Vista Categoria------------------------------------------------
 //! Vista Categoria------------------------------------------------

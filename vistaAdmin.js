@@ -4,7 +4,8 @@ import { sha256 } from "./sha256.js";
 let vistaAdmin = document.getElementById("vistaAdmin")
 vistaAdmin.style.display="none";
 let blockchain = document.getElementById("vistaBlockchain")
-blockchain.style.display="block";
+blockchain.style.display="none";
+let login = document.getElementById("formRegistrar")
 
 
 
@@ -50,7 +51,7 @@ function leercargaMasivaPeliculas(event){
             nombre_pelicula:data.nombre_pelicula, 
             descripcion:data.descripcion, 
             puntuacion_star:data.puntuacion_star,
-            precio_Q:data.precio_Q,
+            precion_Q:data.precion_Q,
             paginas:data.paginas,
             categoria:data.categoria}
 
@@ -160,3 +161,29 @@ document.getElementById('graficarArbolMerkle').addEventListener('click', grafica
  ////! Block chain-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ////! Block chain-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ////! Block chain--------
+
+
+function controlador1(){
+    vistaAdmin.style.display="none";
+    blockchain.style.display="block";
+
+}
+document.getElementById('bttnBlockchain').addEventListener('click', controlador1);
+
+function controlador2(){
+    vistaAdmin.style.display="none";
+    login.style.display="block";
+}
+document.getElementById('bttnlogoutAdmin').addEventListener('click', controlador2);
+
+
+
+
+
+function controlador3(){
+    blockchain.style.display="none";
+    vistaAdmin.style.display="block";
+
+}
+
+document.getElementById('regresarAdminBlockchain').addEventListener('click', controlador3);
