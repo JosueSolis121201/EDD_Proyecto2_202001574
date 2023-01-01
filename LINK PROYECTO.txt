@@ -1,0 +1,3 @@
+REPOSITORIO : https://github.com/JosueSolis121201/EDD_Proyecto2_202001574.git
+
+GIT PAGES: https://josuesolis121201.github.io/EDD_Proyecto2_202001574/main

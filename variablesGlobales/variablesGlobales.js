@@ -19,10 +19,8 @@ var peliculasOrdenadasAVLletras= new AVLletras();
 let usuario={dpi:2354168452525, 
     nombre_completo:"Oscar Armin", 
     nombre_usuario:"EDD",
-    nombre_usuario:"1",  
     correo:"",
     contrasenia:12345678,
-    contrasenia:1,
     telefono:12345678,
     admin:true}
 

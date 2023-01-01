@@ -275,7 +275,7 @@ function modPuntuacionbttn(usuario){
     document.getElementById("ContenedorEstrellas").innerHTML = '';
     let nuevasEstrellas=document.getElementById("getInputPelicula").value
     let cantidadEstrellas=1;
-    if(nuevasEstrellas<=5||cantidadEstrellas>=0){
+    if(nuevasEstrellas<=5&&cantidadEstrellas>=0){
         if(nuevasEstrellas!=""||nuevasEstrellas!=null){
             usuario.data.puntuacion_star =parseInt(nuevasEstrellas)
         }
@@ -288,6 +288,7 @@ function modPuntuacionbttn(usuario){
         console.log("puntuacion nueva: "+usuario.data.puntuacion_star)
     }else{
         alert("Colocar un valor entre 0  y 5")
+        
     }
    
 }

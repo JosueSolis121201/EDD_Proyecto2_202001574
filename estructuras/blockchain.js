@@ -48,6 +48,7 @@ class BlockChain{
 			hash =CryptoJS.SHA256(this.size+stringFecha+prevHash+rootmerkle+nonce).toString();
 			nonce += 1;
 		} 
+    console.log("se hicieron :" +nonce +" Pruebas de trabajo")
 		var data = new Bloque(this.size,stringFecha,"alquileres",nonce,prevHash,rootmerkle,hash);
 		this.insert(data)
 	}	
@@ -57,6 +58,7 @@ class BlockChain{
 	}
 
   insert(_value){
+    
     var newNode = new Node(_value);
 		this.size++;
 
