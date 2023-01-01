@@ -1,5 +1,5 @@
 
-import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista, categoriasHash,alquilerMerkle} from "./variablesGlobales/variablesGlobales.js"
+import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista, categoriasHash,alquilerMerkle,peliculasOrdenadasAVLletras} from "./variablesGlobales/variablesGlobales.js"
 
 import {usuarioActual} from "./vistaRegister.js"
 
@@ -40,165 +40,113 @@ function cambio3(){
 document.getElementById('btnnheaderlogout').addEventListener('click', cambio3);
 document.getElementById('bttnCategoriaUsuario').addEventListener('click', cambio2);
 document.getElementById('selectVistaUsuarioOrdenamiento').addEventListener('change', selectText);
-function recorrerarbolAVL(actual){
-    let contador=0
-    if(actual!=null){ 
-        recorrerarbolAVL(actual.izquierda);
-        let usuario = actual;
-        console.log(usuario)
-        //console.log(usuario.data)
-        contador++
-        //generando divs
-        //!div Contenedor de TODO PARA CADA PELICULA
-        let nuevoDiv = document.createElement("div");
-        nuevoDiv.classList.add("contenedorPeliculaIndividualVistaUsuario")
-        nuevoDiv.setAttribute("id","contenedorPeliculaIndividualVistaUsuario"+contador);
-        document.getElementById("ContenedorGenerarVistaPeliculasid").appendChild(nuevoDiv);
-        //! LABELS- TITULO PELICULA------------------------------------------------
-       let labelTituloPelicula = document.createElement("label");
-       labelTituloPelicula.classList.add("labelBase")
-       nuevoDiv.appendChild(labelTituloPelicula);
-       let textoTituloPelicula = document.createTextNode(usuario.data.nombre_pelicula);
-       labelTituloPelicula.appendChild(textoTituloPelicula);
-       //! Conteneodr PARA DESCRIPCION------------------------------------------------
-       let divDescripcion = document.createElement("div");
-       divDescripcion.classList.add("divDescripcion")
-       nuevoDiv.appendChild(divDescripcion);
-       let textoDescripcion = document.createTextNode(usuario.data.descripcion);
-       divDescripcion.appendChild(textoDescripcion);
-        //! Contenedor INFORMACION------------------------------------------------
-        let divInformacion = document.createElement("div");
-        divInformacion.classList.add("contenedorPeliculaIndividualInformacion")
-        
-       nuevoDiv.appendChild(divInformacion);
-       //insertando igmaen
-       let imagenInformaciondiv = document.createElement("div");
-       imagenInformaciondiv.classList.add("imgInformacion")
-       divInformacion.appendChild(imagenInformaciondiv);
-       imagenInformaciondiv.addEventListener("click",(e)=>{
-        InformacionPelicula(usuario);
-        vistaPeliculas.style.display="block";
-        vistaUsuario.style.display="none";
-        
-    })
-       let textoInformacion = document.createTextNode("Informacion");
-       divInformacion.appendChild(textoInformacion);
-       //! Contenedor Alquilar------------------------------------------------
-       let divAlquilar = document.createElement("div");
-       divAlquilar.classList.add("contenedorPeliculaIndividualAlquilar")
-       nuevoDiv.appendChild(divAlquilar);
-       //insertando igmaen
-       let imagenAlquilardiv = document.createElement("div");
-       imagenAlquilardiv.classList.add("imgAlquilar")
-       divAlquilar.appendChild(imagenAlquilardiv);
-       let textoAlquilar = document.createTextNode("Alquilar");
-       divAlquilar.appendChild(textoAlquilar);
-       //! Accion ed alquilar++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       imagenAlquilardiv.addEventListener("click",(e)=>{
-        let objetoMerkle={usuario:usuarioActual,
-            pelicula:usuario.data.nombre_pelicula,
-            precio:usuario.data.precio_Q
-        }
-        alquilerMerkle.add(objetoMerkle)
-        console.log(alquilerMerkle)
-    })
-        //! Contenedor PRECIO------------------------------------------------
-        let labelPrecio= document.createElement("label");
-        labelPrecio.classList.add("labelBase")
-       nuevoDiv.appendChild(labelPrecio);
-       
-       let textoPrecio = document.createTextNode(usuario.data.precio_Q);
-       labelPrecio.appendChild(textoPrecio);
 
-        
-        recorrerarbolAVL(actual.derecha);
-    }
-}
 function buscarPeliculasAZ(){
+    let contador=0;
     document.getElementById("ContenedorGenerarVistaPeliculasid").innerHTML = '';
     console.log(peliculasArbolAVL)
-    let actual = peliculasArbolAVL.raiz; 
-    recorrerarbolAVL(actual);
+    //console.log(peliculasOrdenadasAVLletras)
+    let actual2=peliculasOrdenadasAVLletras.raiz
+    recorreravlOrdenadoLetraAZ(actual2,contador)
 } 
 
-function recorrerarbolAVLZA(actual){
-    let contador=0
+function recorreravlOrdenadoLetraAZ(actual,contador){
+    
     if(actual!=null){ 
-        recorrerarbolAVLZA(actual.derecha);
         
-        let usuario = actual;
-        //console.log(usuario.data)
-        contador++
-        //generando divs
-        //!div Contenedor de TODO PARA CADA PELICULA
-        let nuevoDiv = document.createElement("div");
-        nuevoDiv.classList.add("contenedorPeliculaIndividualVistaUsuario")
-        nuevoDiv.setAttribute("id","contenedorPeliculaIndividualVistaUsuario"+contador);
-        document.getElementById("ContenedorGenerarVistaPeliculasid").appendChild(nuevoDiv);
-        //! LABELS- TITULO PELICULA------------------------------------------------
-       let labelTituloPelicula = document.createElement("label");
-       labelTituloPelicula.classList.add("labelBase")
-       nuevoDiv.appendChild(labelTituloPelicula);
-       let textoTituloPelicula = document.createTextNode(usuario.data.nombre_pelicula);
-       labelTituloPelicula.appendChild(textoTituloPelicula);
-       //! Conteneodr PARA DESCRIPCION------------------------------------------------
-       let divDescripcion = document.createElement("div");
-       divDescripcion.classList.add("divDescripcion")
-       nuevoDiv.appendChild(divDescripcion);
-       let textoDescripcion = document.createTextNode(usuario.data.descripcion);
-       divDescripcion.appendChild(textoDescripcion);
-        //! Contenedor INFORMACION------------------------------------------------
-        let divInformacion = document.createElement("div");
-        divInformacion.classList.add("contenedorPeliculaIndividualInformacion")
-        
-       nuevoDiv.appendChild(divInformacion);
-       //insertando igmaen
-       let imagenInformaciondiv = document.createElement("div");
-       imagenInformaciondiv.classList.add("imgInformacion")
-       divInformacion.appendChild(imagenInformaciondiv);
-       imagenInformaciondiv.addEventListener("click",(e)=>{
-        InformacionPelicula(usuario);
-        vistaPeliculas.style.display="block";
-        vistaUsuario.style.display="none";
-    })
-       let textoInformacion = document.createTextNode("Informacion");
-       divInformacion.appendChild(textoInformacion);
-       //! Contenedor Alquilar------------------------------------------------
-       let divAlquilar = document.createElement("div");
-       divAlquilar.classList.add("contenedorPeliculaIndividualAlquilar")
-       nuevoDiv.appendChild(divAlquilar);
-       //insertando igmaen
-       let imagenAlquilardiv = document.createElement("div");
-       imagenAlquilardiv.classList.add("imgAlquilar")
-       divAlquilar.appendChild(imagenAlquilardiv);
-       let textoAlquilar = document.createTextNode("Alquilar");
-       divAlquilar.appendChild(textoAlquilar);
-       //! Accion ed alquilar++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       imagenAlquilardiv.addEventListener("click",(e)=>{
-        let objetoMerkle={usuario:usuarioActual,
-            pelicula:usuario.data.nombre_pelicula,
-            precio:usuario.data.precio_Q
-        }
-        alquilerMerkle.add(objetoMerkle)
-        console.log(alquilerMerkle)
-    })
-        //! Contenedor PRECIO------------------------------------------------
-        let labelPrecio= document.createElement("label");
-        labelPrecio.classList.add("labelBase")
-       nuevoDiv.appendChild(labelPrecio);
-       let textoPrecio = document.createTextNode(usuario.data.precion_Q);
-       labelPrecio.appendChild(textoPrecio);
-
-       recorrerarbolAVLZA(actual.izquierda);
+        recorreravlOrdenadoLetraAZ(actual.izquierda);
+        ContenidoPeliculasDivsGenerado(actual,contador)
+        recorreravlOrdenadoLetraAZ(actual.derecha);
         
     }
 }
+
+function ContenidoPeliculasDivsGenerado(actual,contador){
+    let usuario = actual;
+    //console.log(usuario.data)
+    contador++
+    //generando divs
+    //!div Contenedor de TODO PARA CADA PELICULA
+    let nuevoDiv = document.createElement("div");
+    nuevoDiv.classList.add("contenedorPeliculaIndividualVistaUsuario")
+    nuevoDiv.setAttribute("id","contenedorPeliculaIndividualVistaUsuario"+contador);
+    document.getElementById("ContenedorGenerarVistaPeliculasid").appendChild(nuevoDiv);
+    //! LABELS- TITULO PELICULA------------------------------------------------
+   let labelTituloPelicula = document.createElement("label");
+   labelTituloPelicula.classList.add("labelBase")
+   nuevoDiv.appendChild(labelTituloPelicula);
+   let textoTituloPelicula = document.createTextNode(usuario.data.nombre_pelicula);
+   labelTituloPelicula.appendChild(textoTituloPelicula);
+   //! Conteneodr PARA DESCRIPCION------------------------------------------------
+   let divDescripcion = document.createElement("div");
+   divDescripcion.classList.add("divDescripcion")
+   nuevoDiv.appendChild(divDescripcion);
+   let textoDescripcion = document.createTextNode(usuario.data.descripcion);
+   divDescripcion.appendChild(textoDescripcion);
+    //! Contenedor INFORMACION------------------------------------------------
+    let divInformacion = document.createElement("div");
+    divInformacion.classList.add("contenedorPeliculaIndividualInformacion")
+    
+   nuevoDiv.appendChild(divInformacion);
+   //insertando igmaen
+   let imagenInformaciondiv = document.createElement("div");
+   imagenInformaciondiv.classList.add("imgInformacion")
+   divInformacion.appendChild(imagenInformaciondiv);
+   imagenInformaciondiv.addEventListener("click",(e)=>{
+    InformacionPelicula(usuario);
+    vistaPeliculas.style.display="block";
+    vistaUsuario.style.display="none";
+})
+   let textoInformacion = document.createTextNode("Informacion");
+   divInformacion.appendChild(textoInformacion);
+   //! Contenedor Alquilar------------------------------------------------
+   let divAlquilar = document.createElement("div");
+   divAlquilar.classList.add("contenedorPeliculaIndividualAlquilar")
+   nuevoDiv.appendChild(divAlquilar);
+   //insertando igmaen
+   let imagenAlquilardiv = document.createElement("div");
+   imagenAlquilardiv.classList.add("imgAlquilar")
+   divAlquilar.appendChild(imagenAlquilardiv);
+   let textoAlquilar = document.createTextNode("Alquilar");
+   divAlquilar.appendChild(textoAlquilar);
+   //! Accion ed alquilar++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   imagenAlquilardiv.addEventListener("click",(e)=>{
+    let objetoMerkle={usuario:usuarioActual,
+        pelicula:usuario.data.nombre_pelicula,
+        precio:usuario.data.precion_Q
+    }
+    alquilerMerkle.add(objetoMerkle)
+    console.log(alquilerMerkle)
+})
+    //! Contenedor PRECIO------------------------------------------------
+    let labelPrecio= document.createElement("label");
+    labelPrecio.classList.add("labelBase")
+   nuevoDiv.appendChild(labelPrecio);
+   let textoPrecio = document.createTextNode(usuario.data.precion_Q);
+   labelPrecio.appendChild(textoPrecio);
+}
+
 function buscarPeliculasZA(){
+    let contador=0;
     document.getElementById("ContenedorGenerarVistaPeliculasid").innerHTML = '';
     console.log(peliculasArbolAVL)
-    let actual = peliculasArbolAVL.raiz; 
-    recorrerarbolAVLZA(actual);
+    //console.log(peliculasOrdenadasAVLletras)
+    let actual2=peliculasOrdenadasAVLletras.raiz
+    recorreravlOrdenadoLetra(actual2,contador)
 } 
+function recorreravlOrdenadoLetra(actual,contador){
+    
+    if(actual!=null){ 
+        
+        recorreravlOrdenadoLetra(actual.derecha);
+        ContenidoPeliculasDivsGenerado(actual,contador)
+        recorreravlOrdenadoLetra(actual.izquierda);
+        
+    }
+}
+
+
+
 
 function CambiodeVista1(){
     
@@ -274,7 +222,7 @@ function InformacionPelicula(usuario){
        imagenAlquilardiv.addEventListener("click",(e)=>{
         let objetoMerkle={usuario:usuarioActual,
             pelicula:usuario.data.nombre_pelicula,
-            precio:usuario.data.precio_Q
+            precio:usuario.data.precion_Q
         }
         alquilerMerkle.add(objetoMerkle)
         console.log(alquilerMerkle)
@@ -327,16 +275,21 @@ function modPuntuacionbttn(usuario){
     document.getElementById("ContenedorEstrellas").innerHTML = '';
     let nuevasEstrellas=document.getElementById("getInputPelicula").value
     let cantidadEstrellas=1;
-    if(nuevasEstrellas!=""||nuevasEstrellas!=null){
-        usuario.data.puntuacion_star =parseInt(nuevasEstrellas)
+    if(nuevasEstrellas<=5||cantidadEstrellas>=0){
+        if(nuevasEstrellas!=""||nuevasEstrellas!=null){
+            usuario.data.puntuacion_star =parseInt(nuevasEstrellas)
+        }
+        while (cantidadEstrellas<=nuevasEstrellas){
+            let estrellaNuevas = document.createElement("div");
+            estrellaNuevas.classList.add("imgEstrella")
+            document.getElementById("ContenedorEstrellas").appendChild(estrellaNuevas);
+            cantidadEstrellas++;
+        }
+        console.log("puntuacion nueva: "+usuario.data.puntuacion_star)
+    }else{
+        alert("Colocar un valor entre 0  y 5")
     }
-    while (cantidadEstrellas<=nuevasEstrellas){
-        let estrellaNuevas = document.createElement("div");
-        estrellaNuevas.classList.add("imgEstrella")
-        document.getElementById("ContenedorEstrellas").appendChild(estrellaNuevas);
-        cantidadEstrellas++;
-    }
-    console.log("puntuacion nueva: "+usuario.data.puntuacion_star)
+   
 }
 
 

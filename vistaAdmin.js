@@ -1,4 +1,4 @@
-import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista,categoriasHash,alquilerMerkle,blockChain} from "./variablesGlobales/variablesGlobales.js"
+import {usuariosListaSimpleEnlazada,actoresArbolBinario,peliculasArbolAVL,comentariosLista,categoriasHash,alquilerMerkle,blockChain,peliculasOrdenadasAVLletras} from "./variablesGlobales/variablesGlobales.js"
 import { sha256 } from "./sha256.js";
 
 let vistaAdmin = document.getElementById("vistaAdmin")
@@ -22,10 +22,10 @@ function leercargaMasivaUsuarios(event){
             nombre_completo:data.nombre_completo, 
             nombre_usuario:data.nombre_usuario, 
             correo:data.correo,
-            contraseña:data.contraseña,
+            contrasenia:data.contrasenia,
             telefono:data.telefono,
             admin:false}
-
+            
             usuariosListaSimpleEnlazada.agregar(usuario.nombre_usuario,usuario) ;
       }
       usuariosListaSimpleEnlazada.imprimir();
@@ -56,6 +56,8 @@ function leercargaMasivaPeliculas(event){
             categoria:data.categoria}
 
             peliculasArbolAVL.insertar(pelicula.id_pelicula,pelicula)
+            peliculasOrdenadasAVLletras.insertar(pelicula.nombre_pelicula,pelicula)
+
 
       }
      // peliculasArbolAVL.preorden()

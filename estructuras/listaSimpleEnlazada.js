@@ -103,6 +103,33 @@ graficar(){
         .height(540)
         .renderDot(codigodot)
 }
+
+
+
+bubbleSort(){
+    let change = true;
+    while (change){
+        var temporal = this.head;
+        change= false;
+        while (temporal.sig != null){
+            if(this.compararString(temporal.data.name,temporal.sig.data.name)){
+                let temp = temporal.data
+                change= true;
+                temporal.data = temporal.sig.data
+                temporal.sig.data = temp
+        }
+        temporal = temporal.sig
+    }
+}
+}
+
+
+  compararString(izquierda,derecha){
+    if(izquierda.localeCompare(derecha) != 1){
+        return false
+    }
+    return true
+}
 };
 
 

@@ -131,7 +131,7 @@ class Merkle {
 
 
     graficar(){
-      this.datablock.forEach(element =>console.log(element));
+      //this.datablock.forEach(element =>console.log(element));
       this.dotgen(this.tophash)
   
 

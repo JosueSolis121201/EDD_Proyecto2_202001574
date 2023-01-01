@@ -98,7 +98,7 @@ class BlockChain{
   print(){
     var temporal = this.head;
     while(temporal != null){
-      console.log(temporal.value);
+      //console.log(temporal.value);
       temporal = temporal.next;
     }
   }
@@ -106,7 +106,7 @@ class BlockChain{
   print2(){
     var temporal = this.tail;
     while(temporal != null){
-      console.log(temporal.value);
+      //console.log(temporal.value);
       temporal = temporal.before;
     }
   }
@@ -150,12 +150,12 @@ document.getElementById("generarBloqueBlockchain").addEventListener("click",Gene
 
 
 function generarDivsBlockchain(){
-    document.getElementById("BlockchainData").innerHTML = '';
+  console.log("bloqueaasjkdlasjdklasjdaslkd")
+    //document.getElementById("BlockchainData").innerHTML = '';
 
     var temporal = blockChain.head;
-    while(temporal != null){
       let bloque= temporal.value
-      console.log(bloque)
+      //console.log(bloque)
       //div para cada blockcahin
     let nuevoDiv = document.createElement("div");
     nuevoDiv.classList.add("Blockchain")
@@ -190,7 +190,7 @@ function generarDivsBlockchain(){
     
    for(let element of alquilerMerkle.datablock){
     if (element!=1){
-        console.log(element)
+        console.log(element.value)
     stringTransacciones += "{ " +element.value.usuario +" - "+ element.value.pelicula+" - " +element.value.precio+"}     "
     }
    }
@@ -213,8 +213,6 @@ function generarDivsBlockchain(){
 
 
 
-      temporal = temporal.next;
-    }
   
     
 

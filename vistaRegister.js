@@ -21,7 +21,9 @@ function loginBotonFormulario(){
     let buscando =usuariosListaSimpleEnlazada.buscar(username)
     //console.log(buscando)
     if(buscando!=null){
-        if(buscando.contraseña ==password){
+        console.log(buscando.contrasenia)
+        console.log(password)
+        if(buscando.contrasenia ==password){
             if(checkboxAdmin.checked){
                 console.log("Comprobando si es admin")
                 if(buscando.admin==true){
