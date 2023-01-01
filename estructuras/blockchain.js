@@ -150,11 +150,13 @@ document.getElementById("generarBloqueBlockchain").addEventListener("click",Gene
 
 
 function generarDivsBlockchain(){
-  console.log("bloqueaasjkdlasjdklasjdaslkd")
     //document.getElementById("BlockchainData").innerHTML = '';
 
     var temporal = blockChain.head;
-      let bloque= temporal.value
+    let contadordivs=1;
+    while(temporal != null){
+      if(contadordivs==blockChain.size){
+        let bloque= temporal.value
       //console.log(bloque)
       //div para cada blockcahin
     let nuevoDiv = document.createElement("div");
@@ -206,13 +208,14 @@ function generarDivsBlockchain(){
    let textonofecha= document.createTextNode("fecha: "+bloque.date);
    labelfecha.appendChild(textonofecha);
 
+      }
+      
 
 
 
-
-
-
-
+      contadordivs++
+      temporal=temporal.next
+    }
   
     
 
